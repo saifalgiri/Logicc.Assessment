@@ -1,5 +1,6 @@
 using Logicc.AuditLogLib.Actors;
 using Logicc.AuditLogLib.Contracts;
+using Logicc.AuditLogLib.IServices;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 

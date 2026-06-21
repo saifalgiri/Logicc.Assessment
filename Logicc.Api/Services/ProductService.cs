@@ -2,7 +2,7 @@ using Logicc.Api.Data;
 using Logicc.Api.Entities;
 using Logicc.Api.IServices;
 using Logicc.Api.Models;
-using Logicc.AuditLogLib.Services;
+using Logicc.AuditLogLib.IServices;
 
 namespace Logicc.Api.Services;
 

@@ -1,4 +1,5 @@
 using Logicc.AuditLogLib.Configuration;
+using Logicc.AuditLogLib.IServices;
 using Logicc.AuditLogLib.Services;
 using Logicc.AuditLogLib.Workers;
 using MassTransit;

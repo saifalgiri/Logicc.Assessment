@@ -1,6 +1,6 @@
 using System.Collections.Concurrent;
 using Logicc.AuditLogLib.Contracts;
-using Logicc.AuditLogLib.Services;
+using Logicc.AuditLogLib.IServices;
 
 namespace Logicc.Test.Api.TestHelpers;
 

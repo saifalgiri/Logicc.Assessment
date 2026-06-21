@@ -1,6 +1,6 @@
 using Logicc.AuditLogLib.Contracts;
 
-namespace Logicc.AuditLogLib.Services;
+namespace Logicc.AuditLogLib.IServices;
 
 /// <summary>
 /// Generates and publishes audit log events for admin write operations.

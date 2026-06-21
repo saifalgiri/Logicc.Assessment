@@ -1,5 +1,5 @@
 using Logicc.Api.Data;
-using Logicc.AuditLogLib.Services;
+using Logicc.AuditLogLib.IServices;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;

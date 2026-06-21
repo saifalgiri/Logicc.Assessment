@@ -1,6 +1,6 @@
 using Logicc.AuditLogLib.Contracts;
 
-namespace Logicc.AuditLogLib.Services;
+namespace Logicc.AuditLogLib.IServices;
 
 /// <summary>
 /// Persists an <see cref="AuditLogMessage"/> to the local filesystem when RabbitMQ publishing fails.

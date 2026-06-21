@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Logicc.AuditLogLib.Contracts;
+using Logicc.AuditLogLib.IServices;
 using Microsoft.Extensions.Logging;
 
 namespace Logicc.AuditLogLib.Services;
