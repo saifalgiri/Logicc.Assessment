@@ -1,0 +1,71 @@
+services:
+
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: logicc-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"   # Management UI — http://localhost:15672 (guest/guest)
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+
+  victorialogs:
+    image: victoriametrics/victoria-logs:latest
+    container_name: logicc-victorialogs
+    command:
+      - "--storageDataPath=/vlogs-data"
+      - "--httpListenAddr=:9428"
+    ports:
+      - "9428:9428"
+    volumes:
+      - victorialogs-data:/vlogs-data
+
+  api:
+    build:
+      context: .
+      dockerfile: Logicc.Api/Dockerfile
+    container_name: logicc-api
+    ports:
+      - "5093:8080"     # API — http://localhost:5093
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      RabbitMq__Host: logicc-rabbitmq
+      RabbitMq__VirtualHost: /
+      RabbitMq__Username: guest
+      RabbitMq__Password: guest
+    volumes:
+      - audit-failures:/app/audit-failures   # persist file buffer across restarts
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  worker:
+    build:
+      context: .
+      dockerfile: Logicc.VictoriaLogSync/Dockerfile
+    container_name: logicc-worker
+    environment:
+      DOTNET_ENVIRONMENT: Development
+      RabbitMq__Host: logicc-rabbitmq
+      RabbitMq__VirtualHost: /
+      RabbitMq__Username: guest
+      RabbitMq__Password: guest
+      VictoriaLogs__BaseUrl: http://logicc-victorialogs:9428
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      victorialogs:
+        condition: service_started
+
+volumes:
+  rabbitmq-data:
+  victorialogs-data:
+  audit-failures:

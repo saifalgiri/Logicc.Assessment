@@ -1,0 +1,44 @@
+## Build output
+bin/
+obj/
+artifacts/
+publish/
+
+## .NET
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+project.lock.json
+*.nupkg
+*.snupkg
+.nuget/
+
+## Visual Studio / Rider
+.vs/
+.idea/
+*.DotSettings.user
+
+## Test results
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+coverage-report/
+
+## Runtime artifacts (this project)
+audit-failures/
+
+## Local config overrides (may contain secrets)
+appsettings.Local.json
+appsettings.*.Local.json
+docker-compose.override.yml
+.env
+
+## Dev certificates
+*.pfx
+*.pem
+
+## OS
+.DS_Store
+Thumbs.db
